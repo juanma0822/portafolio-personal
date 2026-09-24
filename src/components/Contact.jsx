@@ -13,7 +13,7 @@ export default function Contact({lang='es', translations={download:'Descargar CV
           <div className="fancy-card" style={{display:'inline-flex',padding:'6px 10px',gap:8,alignItems:'center'}}>
             <a className="btn ghost" href="mailto:juanmanuelva3243@gmail.com">Email</a>
             <a className="btn ghost" href="https://www.linkedin.com/in/juan-manuel-valencia-devops/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a className="btn primary" href="/cv.html" target="_blank" rel="noreferrer">CV</a>
+            <a className="btn primary" href="cv.html" target="_blank" rel="noreferrer">CV</a>
           </div>
         </div>
       </div>

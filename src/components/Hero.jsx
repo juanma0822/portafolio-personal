@@ -16,7 +16,7 @@ export default function Hero({lang='es'}){
           <p className="muted">DevOps / Cloud Engineer · Systems Engineer</p>
           <p className="lead">{lang==='es' ? 'Creo infraestructuras confiables en Azure y automatizo despliegues con IaC.' : 'I build reliable Azure infrastructure and automate deployments with IaC.'}</p>
           <div className="hero-actions">
-            <a className="btn primary" href="/cv.html" target="_blank" rel="noopener noreferrer">Descargar CV</a>
+            <a className="btn primary" href="cv.html" target="_blank" rel="noopener noreferrer">Descargar CV</a>
             <a className="btn ghost" href="#about">Ver más</a>
           </div>
         </motion.div>
@@ -64,8 +64,8 @@ function TiltCard(){
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
-      <div className="photo">
-        <img src="/profile.jpg" alt="Juan Manuel" />
+        <div className="photo">
+        <img src="profile.jpg" alt="Juan Manuel" />
       </div>
       <ul className="summary-list">
         <li><strong>Azure</strong> · Bicep · Terraform</li>
@@ -81,8 +81,8 @@ function IDCard(){
     <div className="id-card-inner fancy-card">
       <div className="card-accent" aria-hidden />
       <div className="id-left">
-        <div className="id-photo">
-          <img src="/profile.jpg" alt="Juan Manuel" />
+          <div className="id-photo">
+          <img src="profile.jpg" alt="Juan Manuel" />
         </div>
       </div>
       <div className="id-right">
@@ -96,7 +96,7 @@ function IDCard(){
           <div><strong>Ubicación:</strong> Tuluá, Colombia</div>
         </div>
         <div style={{marginTop:8,display:'flex',gap:10,alignItems:'center'}}>
-          <a className="btn primary" href="/cv.html" target="_blank" rel="noreferrer">Descargar CV</a>
+          <a className="btn primary" href="cv.html" target="_blank" rel="noreferrer">Descargar CV</a>
           <a className="btn ghost" href="#contact">Contactar</a>
         </div>
       </div>
