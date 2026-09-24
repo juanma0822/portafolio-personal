@@ -1,6 +1,7 @@
 export const strings = {
   en: {
     sections: {
+      work: 'Work',
       about: 'About',
       experience: 'Experience',
       skills: 'Skills',
@@ -16,6 +17,7 @@ export const strings = {
   },
   es: {
     sections: {
+      work: 'Proyectos',
       about: 'Perfil',
       experience: 'Experiencia',
       skills: 'Habilidades',

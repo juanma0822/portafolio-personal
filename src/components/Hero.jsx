@@ -2,9 +2,13 @@ import React from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
-export default function Hero({lang='es'}){
+export default function Hero({lang='es', strings}){
+  const title = 'Juan Manuel Valencia Triana'
+  const role = lang==='es' ? 'DevOps · Cloud Engineer' : 'DevOps · Cloud Engineer'
+  const lead = lang==='es' ? 'Diseño infraestructuras en Azure y automatizo despliegues con IaC y pipelines confiables.' : 'I design Azure infrastructure and automate deployments with IaC and reliable pipelines.'
+
   return (
-    <section className="hero" id="hero">
+    <section className="hero" id="hero" aria-label={title}>
       <div className="container hero-grid">
         <motion.div
           className="hero-text"
@@ -12,12 +16,16 @@ export default function Hero({lang='es'}){
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>Juan Manuel Valencia Triana</h1>
-          <p className="muted">DevOps / Cloud Engineer · Systems Engineer</p>
-          <p className="lead">{lang==='es' ? 'Creo infraestructuras confiables en Azure y automatizo despliegues con IaC.' : 'I build reliable Azure infrastructure and automate deployments with IaC.'}</p>
+          <h1>{title}</h1>
+          <p className="muted">{role}</p>
+          <p className="lead">{lead}</p>
+          <ul className="hero-highlights small muted">
+            <li><strong>Especialidad:</strong> Infraestructura en la nube, IaC, CI/CD</li>
+            <li><strong>Impacto:</strong> despliegues reproducibles y observabilidad</li>
+          </ul>
           <div className="hero-actions">
-            <a className="btn primary" href="cv.html" target="_blank" rel="noopener noreferrer">Descargar CV</a>
-            <a className="btn ghost" href="#about">Ver más</a>
+            <a className="btn primary" href="#work">{lang==='es' ? 'Ver proyectos' : 'View selected work'}</a>
+            <a className="btn ghost" href="cv.html" target="_blank" rel="noopener noreferrer">{lang==='es' ? 'Descargar CV' : 'Download CV'}</a>
           </div>
         </motion.div>
 
@@ -30,7 +38,7 @@ export default function Hero({lang='es'}){
           whileHover={{ scale: 1.02 }}
         >
           <div className="card-accent" aria-hidden />
-          <IDCard />
+          <IDCard compact />
         </motion.div>
       </div>
     </section>
@@ -81,7 +89,7 @@ function IDCard(){
     <div className="id-card-inner fancy-card">
       <div className="card-accent" aria-hidden />
       <div className="id-left">
-          <div className="id-photo">
+        <div className="id-photo">
           <img src="profile.jpg" alt="Juan Manuel" />
         </div>
       </div>
@@ -94,10 +102,6 @@ function IDCard(){
           <div><strong>Email:</strong> juanmanuelva3243@gmail.com</div>
           <div><strong>Tel:</strong> +57 3189004221</div>
           <div><strong>Ubicación:</strong> Tuluá, Colombia</div>
-        </div>
-        <div style={{marginTop:8,display:'flex',gap:10,alignItems:'center'}}>
-          <a className="btn primary" href="cv.html" target="_blank" rel="noreferrer">Descargar CV</a>
-          <a className="btn ghost" href="#contact">Contactar</a>
         </div>
       </div>
     </div>
