@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { projects } from '../data/portfolio'
+import ProjectCard from './ProjectCard'
+import DeploymentRoute from './DeploymentRoute'
 
 export default function Projects({lang='es', strings}){
   const label = strings?.sections?.work || (lang==='es' ? 'Proyectos' : 'Work')
   const subtitle = lang==='es' ? 'Selección de proyectos relevantes y contribuciones.' : 'Selected projects and case studies.'
   const featured = projects && projects.length ? projects[0] : null
   const rest = projects && projects.length>1 ? projects.slice(1) : []
+  const [open, setOpen] = useState(null)
+
+  function toggle(id){
+    setOpen(prev => prev === id ? null : id)
+  }
 
   return (
     <section id="work" className="projects" aria-labelledby="work-heading">
       <div className="container">
+        {/* DeploymentRoute showcased above projects */}
+        <div style={{marginBottom:18}}>
+          <div className="fancy-card" style={{padding:18}}>
+            <h3 style={{margin:0,marginBottom:8}}>{lang==='es' ? 'Deployment route' : 'Deployment route'}</h3>
+            <div style={{marginTop:8}}>
+              <DeploymentRoute />
+            </div>
+          </div>
+        </div>
         <h2 id="work-heading">{label}</h2>
         <p className="muted">{subtitle}</p>
 
@@ -40,21 +56,7 @@ export default function Projects({lang='es', strings}){
 
         <div className="projects-grid" role="list">
           {rest.map(p=> (
-            <article key={p.id} id={`project-${p.id}`} className="project-card card" role="listitem">
-              <div className="project-thumb">
-                <img src={p.image || (`/assets/projects/${p.id}.svg`)} alt={p.title} onError={(e)=>{e.currentTarget.style.display='none'}} />
-              </div>
-              <div className="project-content">
-                <h3>{p.title}</h3>
-                <div className="muted small">{p.category} · {p.period}</div>
-                <p className="small">{p.summary}</p>
-                <div className="tech small muted">{p.tech.join(' · ')}</div>
-                <div className="project-actions" style={{marginTop:8}}>
-                  {p.link && <a className="btn primary" href={p.link} target="_blank" rel="noopener noreferrer">{lang==='es' ? 'Ver' : 'View'}</a>}
-                  <a className="btn ghost" href="cv.html" target="_blank" rel="noopener noreferrer">{lang==='es' ? 'CV' : 'CV'}</a>
-                </div>
-              </div>
-            </article>
+            <ProjectCard key={p.id} project={p} expanded={open===p.id} onToggle={toggle} lang={lang} />
           ))}
         </div>
       </div>

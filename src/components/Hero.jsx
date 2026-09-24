@@ -39,6 +39,7 @@ export default function Hero({lang='es', strings}){
         >
           <div className="card-accent" aria-hidden />
           <IDCard compact />
+          {/* compact route removed from hero to avoid duplication */}
         </motion.div>
       </div>
     </section>

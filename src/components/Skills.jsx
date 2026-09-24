@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import SkillBubblesCanvas from './SkillBubblesCanvas'
+import DeploymentRoute from './DeploymentRoute'
 
 const skills = [
   'Azure', 'Bicep', 'Terraform', 'Docker', 'Kubernetes', 'Git', 'CI/CD', 'Node.js', 'React',
@@ -26,6 +27,8 @@ export default function Skills({lang='es'}){
           <div className="card-accent" aria-hidden />
           <SkillBubblesCanvas skills={skills} colors={bubbleColors} />
         </div>
+
+        {/* DeploymentRoute removed from Skills to avoid duplication */}
       </div>
     </section>
   )

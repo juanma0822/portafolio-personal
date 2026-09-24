@@ -5,7 +5,15 @@
   --accent: #0a84ff;
   --glass: rgba(255,255,255,0.6);
   --shadow: 0 6px 18px rgba(15,23,42,0.08);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* Cloud Prism tokens */
+  --cp-azure: #168BFF;
+  --cp-iac: #FF6B4A;
+  --cp-automation: #C7F436;
+  --cp-platform: #16D9D2;
+  --cp-data: #FF4FA3;
+  --cp-observe: #FFC857;
+  --cp-focus: #005fcc;
+  font-family: 'Space Grotesk', Manrope, 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:#0f172a}
@@ -63,12 +71,20 @@ body{margin:0;background:var(--bg);color:#0f172a}
 .featured-media img{width:100%;height:220px;object-fit:cover;border-radius:8px}
 .featured-body{padding:0}
 .projects-grid{display:flex;flex-wrap:wrap;gap:1rem}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:0.8rem}
+.skill-cluster{padding:0.8rem;border-radius:10px}
+.skill-cluster .bubble{background:transparent;padding:6px 10px;border-radius:999px;font-size:0.85rem}
+.skill-cluster:focus{outline:3px solid rgba(2,120,255,0.12)}
 .project-card{background:var(--card);border-radius:12px;padding:0.8rem;box-shadow:0 8px 30px rgba(2,6,23,0.08);border:1px solid rgba(255,255,255,0.02);display:flex;gap:0.8rem;align-items:flex-start}
 .project-thumb{flex:0 0 110px;height:78px;overflow:hidden;border-radius:8px;background:#f3f6fb}
 .project-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .project-content{flex:1;min-width:0}
 .project-card h3{margin:0 0 6px 0}
 .project-card p{margin:0.2rem 0}
+/* expanded project card */
+.project-card.expanded{grid-column:1/-1;padding:1rem}
+.project-expanded{background:transparent;padding:0.6rem 0;border-top:1px solid rgba(0,0,0,0.04);margin-top:0.6rem}
+.expand-btn{padding:0.4rem 0.6rem}
 
 /* Fancy certifications cards */
 .cert-grid--fancy{gap:1rem}
@@ -93,6 +109,38 @@ body{margin:0;background:var(--bg);color:#0f172a}
 /* Reusable fancy card style to apply across site */
 .fancy-card{position:relative;overflow:hidden;border-radius:12px;padding:1rem;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.03);box-shadow:0 14px 40px rgba(2,6,23,0.10);transition:transform 300ms cubic-bezier(.2,.8,.2,1),box-shadow 300ms}
 .fancy-card:hover{transform:translateY(-8px);box-shadow:0 28px 80px rgba(2,6,23,0.18)}
+
+/* Deployment route styles */
+.deployment-route{display:block;margin-top:0.6rem;padding:1rem}
+.deployment-route .route-list{display:flex;align-items:center;gap:18px;padding:0;margin:0;list-style:none}
+.deployment-route .route-stage{display:flex;align-items:center;gap:10px;position:relative;padding:10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));border:1px solid rgba(0,0,0,0.03)}
+.deployment-route .stage-icon{width:54px;height:54px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--accent);background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4))}
+.deployment-route .stage-icon{position:relative}
+.stage-pulse{position:absolute;inset:0;border-radius:10px;pointer-events:none}
+.deployment-route .stage-title{font-size:1rem;font-weight:700}
+.deployment-route .route-connector{height:6px;background:linear-gradient(90deg,var(--cp-azure),var(--cp-platform));flex:1;border-radius:6px;margin-left:8px;margin-right:8px;position:relative}
+.deployment-route .route-signal{height:12px;width:18px;border-radius:6px;background:var(--cp-platform);position:absolute;left:0;top:22px}
+.deployment-route .route-wrap{position:relative;padding:14px;border-radius:12px}
+.deployment-route .route-progress{position:absolute;left:54px;right:54px;top:50%;height:6px;background:linear-gradient(90deg,var(--cp-azure),var(--cp-platform));transform-origin:left center;border-radius:6px;opacity:0.18;z-index:0}
+.deployment-route.lowline .route-progress{top:85%}
+.deployment-route.lowline .route-signal{top:78%}
+.deployment-route .route-signal{z-index:1;left:54px;top:44%;width:18px;height:12px;border-radius:6px;background:var(--cp-platform);box-shadow:0 6px 14px rgba(2,6,23,0.12)}
+
+/* branch dots */
+.branch-dots{position:absolute;left:50%;top:50%;transform:translateX(-50%);display:flex;gap:8px;pointer-events:none}
+.branch-dot{display:inline-block;width:10px;height:10px;border-radius:999px;box-shadow:0 6px 14px rgba(2,6,23,0.08);opacity:0}
+.branch-dot.up{transform-origin:center bottom}
+.branch-dot.down{transform-origin:center top}
+
+/* Responsive - stack on mobile */
+@media(max-width:640px){
+  .deployment-route .route-list{flex-direction:column;align-items:stretch;gap:12px}
+  .deployment-route .route-connector{height:10px;width:100%;border-radius:6px;margin:6px 0}
+  .deployment-route .route-stage{padding:10px}
+  .deployment-route .route-wrap{padding:10px}
+  .deployment-route .route-progress{left:16px;right:16px;top:calc(50% + 8px)}
+  .deployment-route .route-signal{top:10%}
+}
 .fancy-card .card-accent{position:absolute;right:-12%;top:-24%;width:160px;height:160px;border-radius:50%;filter:blur(18px);opacity:0.18;pointer-events:none;background:linear-gradient(135deg,var(--accent),#ff7bd0);z-index:0}
 
 /* Ensure buttons inside fancy-card are visible and retain spacing */
